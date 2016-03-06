@@ -1,0 +1,25 @@
+package com.validator.view;
+
+import java.awt.BorderLayout;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+public class View extends JFrame{
+	JFrame jFrame;
+	JLabel jLabel;
+	JButton jButton;
+	
+	public void View() {
+		jFrame = new JFrame("Password Validator");
+		jFrame.getContentPane().setLayout(new BorderLayout());    
+		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);           
+		jFrame.setSize(200,200);        
+		jFrame.setVisible(true);
+		
+		jLabel = new JLabel("Password");
+		jFrame.getContentPane().add(jLabel, BorderLayout.CENTER);
+	}
+
+}

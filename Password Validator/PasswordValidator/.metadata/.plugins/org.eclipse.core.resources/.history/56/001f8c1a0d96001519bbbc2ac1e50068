@@ -1,0 +1,21 @@
+package com.validator.interceptorfilter;
+
+import com.validator.model.Password;
+
+public class FilterManager {
+	private FilterChain filterChain;
+	
+	public FilterManager(Password target) {
+		filterChain = new FilterChain(target);
+	}
+	
+	public void setFilter(Filter filter) {
+		filterChain.addFilter(filter);
+	}
+	
+	public void filterPassword(String password) {
+		filterChain.execute(password);
+	}
+	
+	
+}

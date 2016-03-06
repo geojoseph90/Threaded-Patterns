@@ -1,0 +1,11 @@
+package com.validator.interceptorfilter;
+
+public class OffensiveWordFilter implements Filter{
+
+	@Override
+	public void executeFilter(String password) {
+		//the method for processing the input string is performed here 
+		
+	}
+
+}

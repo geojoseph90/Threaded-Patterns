@@ -1,0 +1,43 @@
+package com.validator.interceptorfilter;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.validator.model.TargetModel;
+
+public class FilterChain {
+	private List<Filter> filterList;
+	
+	private TargetModel target = null;
+	
+	public FilterChain(TargetModel target) {
+		this.target = target;
+	}
+	
+	public void addFilter(Filter filter) {
+		filterList.add(filter);
+	}
+	
+	public void execute(String password) {
+		boolean isValid = false;
+		for(Filter filter : filterList) {
+			String result = filter.executeFilter(password);
+			if(result.equals("found") || result.equals("failed")) {
+				isValid = false;
+			}
+		}
+		isValid =  true;
+		
+		if(isValid) {
+			target.setPassword(password);
+		}
+		else {
+			//dont know what to do. either set default password or return something to controller
+			target.setPassword("password123");
+		}
+	}
+	
+	
+}

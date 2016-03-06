@@ -1,0 +1,24 @@
+package com.validator.model;
+
+import com.validator.interceptorfilter.Filter;
+
+public class TargetModel {
+	String user_password = null;
+	
+	public TargetModel(String password) {
+		user_password = password;
+	}
+	
+	public void setPassword(String password) {
+		user_password = password;
+		System.out.println("Password saved");
+	}
+
+	public void arrangeList(String[] order) {
+		
+		for(int i=0;i<3;i++) {
+			Filter filter = filterMap.get(order[i].trim());
+			filterChain.add(filter);
+		}
+	}
+}

@@ -1,0 +1,34 @@
+package com.validator.interceptorfilter;
+
+import static java.util.Arrays.asList;
+
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class EasyGuessFilter implements Filter {
+	private String password = "";
+	public  List<String> EasyWords = asList(
+	        "myCompany","company","office", "workplace","mywork");
+	
+	
+	@Override
+	public String executeFilter(String password) {
+		this.password = password;
+		for(String word : EasyWords) {
+			Pattern pat = Pattern.compile(word, Pattern.CASE_INSENSITIVE);
+	        Matcher mat = pat.matcher(password);
+	        if(mat.find()) {
+	        	//System.out.println("Proprietery word found!! Please retry with a new password");
+	        	return "found";
+	        }
+	        
+		}
+		//System.out.println("Proprietery word not found");
+        return password;
+	}
+	public static void main(String[] args) {
+		EasyGuessFilter filter = new EasyGuessFilter();
+		filter.executeFilter("officemakesmehappy");
+	}
+}

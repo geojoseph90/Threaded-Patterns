@@ -1,0 +1,35 @@
+package com.validator.interceptorfilter;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.validator.model.TargetModel;
+
+public class FilterChain {
+	private List<Filter> filterList;
+	
+	private TargetModel target = null;
+	
+	public FilterChain(TargetModel target) {
+		this.target = target;
+	}
+	
+	public void addFilter(Filter filter) {
+		filterList.add(filter);
+	}
+	
+	public boolean execute(String password) {
+		
+		for(Filter filter : filterList) {
+			String result = filter.executeFilter(password);
+			if(result.equals("found") || result.equals("failed")) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	
+}

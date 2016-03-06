@@ -1,0 +1,31 @@
+package com.validator.controller;
+
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+
+import com.validator.interceptorfilter.FilterManager;
+import com.validator.model.TargetModel;
+import com.validator.view.View;
+
+public class Main {
+	private TargetModel target = null;
+	
+	public static void main(String ags[]) {
+		
+		
+		SwingUtilities.invokeLater(new Runnable() {
+	        @Override
+	        public void run() {               
+	            JFrame jFrame = new View("Password Validator"); 
+	            jFrame.setSize(500,400);
+	    		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);                  
+	    		jFrame.setVisible(true);
+	        }
+	    });  
+		
+	}
+	
+	public void validatePassword(String password) {
+		FilterManager manager = new FilterManager(target);
+	}
+}

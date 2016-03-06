@@ -1,0 +1,5 @@
+package com.validator.interceptorfilter;
+
+public class ProprietorRelatedNameFilter {
+
+}

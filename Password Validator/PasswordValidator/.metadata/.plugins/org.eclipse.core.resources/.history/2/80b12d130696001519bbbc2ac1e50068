@@ -1,0 +1,34 @@
+package com.validator.interceptorfilter;
+
+import static java.util.Arrays.asList;
+
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class ProprietorRelatedNameFilter implements Filter {
+
+	public  List<String> proprieteryWords = asList(
+	        "myCompany","company","office", "workplace","mywork");
+	
+	
+	@Override
+	public String executeFilter(String password) {
+		
+		for(String swearWord : proprieteryWords) {
+			Pattern pat = Pattern.compile(swearWord, Pattern.CASE_INSENSITIVE);
+	        Matcher mat = pat.matcher(password);
+	        if(mat.find()) {
+	        	System.out.println("Proprietery word found!! Please retry");
+	        	return "found";
+	        }
+	        
+		}
+		System.out.println("Proprietery word not found");
+        return "not found";
+	}
+	public static void main(String[] args) {
+		ProprietorRelatedNameFilter filter = new ProprietorRelatedNameFilter();
+		filter.executeFilter("iminmycompany");
+	}
+}

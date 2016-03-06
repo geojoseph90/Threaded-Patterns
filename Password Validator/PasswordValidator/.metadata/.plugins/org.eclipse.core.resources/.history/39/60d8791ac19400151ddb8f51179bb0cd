@@ -1,0 +1,18 @@
+package com.validator.controller;
+
+import javax.swing.SwingUtilities;
+
+import com.validator.view.View;
+
+public class Main {
+
+	public static void main(String ags[]) {
+		SwingUtilities.invokeLater(new Runnable() {
+	        @Override
+	        public void run() {               
+	            View view = new View(); 
+	        }
+	    });  
+		
+	}
+}

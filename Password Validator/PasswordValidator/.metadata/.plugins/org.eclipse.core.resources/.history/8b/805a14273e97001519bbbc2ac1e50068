@@ -1,0 +1,11 @@
+package com.validator.interceptorfilter;
+
+public class RootWordFilter implements Filter{
+
+	@Override
+	public String executeFilter(String password) {
+		//the method for returning the root word comes here
+	return "";
+	}
+
+}

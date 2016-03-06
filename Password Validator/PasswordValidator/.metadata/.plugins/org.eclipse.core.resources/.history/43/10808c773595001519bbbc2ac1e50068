@@ -1,0 +1,17 @@
+package com.validator.interceptorfilter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class FilterChain {
+	private List<Filter> filterList = new ArrayList<Filter>();
+	
+	public void addFilter(Filter filter) {
+		filterList.add(filter);
+	}
+	public void execute(String password) {
+		for(Filter filter : filterList) {
+			filter.executeFilter(password);
+		}
+	}
+}

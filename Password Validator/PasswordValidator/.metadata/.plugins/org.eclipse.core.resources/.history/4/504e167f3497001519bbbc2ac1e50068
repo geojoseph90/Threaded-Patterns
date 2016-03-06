@@ -1,0 +1,53 @@
+package com.validator.interceptorfilter;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class OffensiveWordFilter implements Filter{
+	private String password = "";
+	private static List<String> swearWords;
+	private static String defaultFileLocation = new File("").getAbsolutePath();
+	
+	//The list contains a set of words that the system considers offensive 
+	static {
+			BufferedReader br;
+			try {
+			br = new BufferedReader(new FileReader(defaultFileLocation+"/src/bad-words.txt"));
+			while(true) {
+				String line = br.readLine();
+				if(line == null) {
+					break;
+				}
+				swearWords.add(line);
+			}
+			br.close();
+		    
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	  
+	@Override
+	public String executeFilter(String password) {
+		this.password = password;
+		for(String swearWord : swearWords) {
+			Pattern pat = Pattern.compile(swearWord, Pattern.CASE_INSENSITIVE);
+	        Matcher mat = pat.matcher(password);
+	        if(mat.find()) {
+	        	System.out.println("Offensive word found!! Please retry with a new password");
+	        	return "found";
+	        }
+	        
+		}
+		System.out.println("Offensive word not found");
+        return password;
+	}
+
+}
+
+    

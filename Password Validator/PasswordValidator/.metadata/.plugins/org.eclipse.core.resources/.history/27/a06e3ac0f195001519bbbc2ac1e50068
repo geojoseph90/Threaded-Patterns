@@ -1,0 +1,11 @@
+package com.validator.interceptorfilter;
+
+public class SaltPasswordFilter implements Filter{
+
+	@Override
+	public void executeFilter(String password) {
+		//the method for salting password comes here 
+		
+	}
+
+}

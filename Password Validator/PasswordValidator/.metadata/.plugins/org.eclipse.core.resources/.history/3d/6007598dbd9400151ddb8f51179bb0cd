@@ -1,0 +1,35 @@
+package com.validator.view;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+
+public class View extends JFrame{
+	JFrame jFrame;
+	JLabel jLabel;
+	JButton jButton;
+	public View() {
+		jFrame = new JFrame("Password Validator");
+		// creating layout manager
+		
+		jFrame.setLayout(new BorderLayout());
+		// create swing component
+		JTextArea textArea = new JTextArea();
+		JButton button = new JButton("Validate");
+		
+		// Add swing components to the content pane
+		Container container = getContentPane();
+		container.add(textArea, BorderLayout.CENTER);
+		container.add(button,BorderLayout.SOUTH);
+		jFrame.setSize(500,400);
+		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);                  
+		jFrame.setVisible(true);
+		
+	}
+
+}
+

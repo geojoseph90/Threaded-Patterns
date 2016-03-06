@@ -1,0 +1,13 @@
+package com.validator.model;
+
+public class Password {
+	String user_password = null;
+	public Password(String password) {
+		user_password = password;
+	}
+	
+	public void setPassword(String password) {
+		System.out.println("Password saved");
+	}
+	
+}

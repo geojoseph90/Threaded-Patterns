@@ -1,0 +1,12 @@
+package com.validator.interceptorfilter;
+
+import static java.util.Arrays.asList;
+
+import java.util.List;
+
+public class ProprietorRelatedNameFilter {
+
+	public  List<String> swearWords = asList(
+	        "myCompany","company","office", "workplace","mywork");
+	
+}

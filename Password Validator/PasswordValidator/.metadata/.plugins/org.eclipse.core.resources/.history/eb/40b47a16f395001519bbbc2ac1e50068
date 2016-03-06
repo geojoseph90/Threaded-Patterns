@@ -1,0 +1,5 @@
+package com.validator.interceptorfilter;
+
+public interface Filter {
+	public void executeFilter(String password);
+}

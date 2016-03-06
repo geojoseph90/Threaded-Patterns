@@ -1,0 +1,112 @@
+package com.validator.interceptorfilter;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class OffensiveWordFilter implements Filter{
+	private String password = "";
+	private static List<String> swearWords;
+	private static String defaultFileLocation = new File("").getAbsolutePath();
+	//The list contains a set of words that the system considers offensive 
+
+	static {
+		try {
+			// open input stream test.txt for reading purpose.
+			InputStream fis=new FileInputStream("/src/bad-words.txt");
+		    BufferedReader br=new BufferedReader(new InputStreamReader(fis));
+		    while(br.)
+		    for (String line = br.readLine(); line != null; line = br.readLine()) {
+		       swearWords.add(line);
+		    }
+
+		    br.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	/*public  List<String> swearWords = asList(
+	        "fuck",
+	        "s.*?h.*?t",
+	        "bi.*?h",
+	        "bas.*?d",
+	        "m.*?f.*?",
+	        "c.*?nt",
+	        "as.*?s",
+	        "s.*?ck",
+	        "w.*?nk",
+	        "co.*?on",
+	        "wo.*?g",
+	        "ni.*?g.*?r",
+	        "c.*?c.*?k",
+	        "penis",
+	        "vagina",
+	        "c.*?um",
+	        "p.*?i.*?s",
+	        "p.*?orn",
+	        "ar.*?se",
+	        "nexon",
+	        "ho.*?r.*?ny",
+	        "dil.*?do",
+	        "doggystyle",
+	        "cl.*?it",
+	        "fann.*?y",
+	        "ho.*?re.*?",
+	        "kn.*?ob",
+	        "mastur.*?",
+	        "hitler",
+	        "n.*?uts",
+	        "sob.*?",
+	        "shag.*?",
+	        "sl.*?ut.*?",
+	        "testi.*?",
+	        "t.*?wa.*?t",
+	        "viagr.*?a",
+	        "wil.*?ly",
+	        "wil.*?lie",
+	        "jism",
+	        "dog.*?gy",
+	        "donkeyri.*?b",
+	        "breas.*?t",
+	        "bl.*?wjo.*?b",
+	        "b.*?b",
+	        "beastiality",
+	        "an.*?al",
+	        "cawk",
+	        "pus.*?s.*?",
+	        "rim.*?m",
+	        "ejaculate",
+	        "ejakulate",
+	        "er.*?ct",
+	        "horni",
+	        "horna",
+	        "se.*?x",
+	        "se.*?ck",
+	        "ga.*?y",
+	        "fk",
+	        "we*?nis");*/
+	  
+	@Override
+	public String executeFilter(String password) {
+		this.password = password;
+		for(String swearWord : swearWords) {
+			Pattern pat = Pattern.compile(swearWord, Pattern.CASE_INSENSITIVE);
+	        Matcher mat = pat.matcher(password);
+	        if(mat.find()) {
+	        	System.out.println("Offensive word found!! Please retry with a new password");
+	        	return "found";
+	        }
+	        
+		}
+		System.out.println("Offensive word not found");
+        return password;
+	}
+
+}
+
+    

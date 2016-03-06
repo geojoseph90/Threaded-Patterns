@@ -1,0 +1,103 @@
+package com.validator.interceptorfilter;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class OffensiveWordFilter implements Filter{
+	
+	public static String[] swearWords = {
+	        "f.*?u.*?k",
+	        "s.*?h.*?t",
+	        "bi.*?h",
+	        "bas.*?d",
+	        "m.*?f.*?",
+	        "c.*?nt",
+	        "as.*?s",
+	        "s.*?ck",
+	        "w.*?nk",
+	        "co.*?on",
+	        "wo.*?g",
+	        "ni.*?g.*?r",
+	        "c.*?c.*?k",
+	        "penis",
+	        "vagina",
+	        "c.*?um",
+	        "p.*?i.*?s",
+	        "p.*?orn",
+	        "ar.*?se",
+	        "nexon",
+	        "ho.*?r.*?ny",
+	        "dil.*?do",
+	        "doggystyle",
+	        "cl.*?it",
+	        "fann.*?y",
+	        "ho.*?re.*?",
+	        "kn.*?ob",
+	        "mastur.*?",
+	        "****",
+	        "hitler",
+	        "n.*?uts",
+	        "sob.*?",
+	        "shag.*?",
+	        "sl.*?ut.*?",
+	        "testi.*?",
+	        "t.*?wa.*?t",
+	        "viagr.*?a",
+	        "wil.*?ly",
+	        "wil.*?lie",
+	        "jism",
+	        "dog.*?gy",
+	        "donkeyri.*?b",
+	        "breas.*?t",
+	        "bl.*?wjo.*?b",
+	        "b.*?b",
+	        "beastiality",
+	        "an.*?al",
+	        "cawk",
+	        "pus.*?s.*?",
+	        "rim.*?m",
+	        "ejaculate",
+	        "ejakulate",
+	        "er.*?ct",
+	        "horni",
+	        "horna",
+	        "se.*?x",
+	        "se.*?ck",
+	        "ga.*?y",
+	        "fk",
+	        "we*?nis"
+	    };
+	   
+	  
+	@Override
+	public void executeFilter(String password) {
+		
+		/*if (Arrays.stream(swearWords).noneMatch(password::contains)) {
+		   System.out.println("None found");
+		}
+		else {
+			System.out.println("Found bad word");
+		}*/
+		
+		for(String swearWord : swearWords) {
+			Pattern pat = Pattern.compile(swearWord, Pattern.CASE_INSENSITIVE);
+	        Matcher mat = pat.matcher(password);
+	        while (mat.find()) {
+               System.out.println("mat found"); 
+                
+            }
+	        
+		}
+        
+		System.out.println("No offensive word found");
+		
+	}
+	
+	public static void main(String args[]) {
+		OffensiveWordFilter filter = new OffensiveWordFilter();
+		filter.executeFilter("we*?nis");
+	}
+
+}
+
+    

@@ -1,0 +1,22 @@
+package com.validator.interceptorfilter;
+
+import java.security.SecureRandom;
+import java.util.Random;
+
+public class SaltPasswordFilter implements Filter{
+	
+	private static final Random RANDOM_GEN = new SecureRandom();
+	
+	@Override
+	public void executeFilter(String password) {
+		//the method for salting password comes here 
+		
+	}
+	
+	public static byte[] getNextSalt() {
+	    byte[] salt = new byte[16];
+	    RANDOM_GEN.nextBytes(salt);
+	    return salt;
+	  }
+
+}

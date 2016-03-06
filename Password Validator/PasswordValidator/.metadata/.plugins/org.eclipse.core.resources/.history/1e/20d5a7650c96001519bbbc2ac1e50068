@@ -1,0 +1,6 @@
+package com.validator.model;
+
+public class Password {
+	String user_password = null;
+	
+}

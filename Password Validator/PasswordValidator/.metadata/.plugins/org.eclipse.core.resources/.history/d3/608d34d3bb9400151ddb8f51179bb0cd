@@ -1,0 +1,21 @@
+package com.validator.controller;
+
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+
+public class Main {
+
+	public static void main(String ags[]) {
+		SwingUtilities.invokeLater(new Runnable() {
+	        @Override
+	        public void run() {               
+	            //View view = new View(); 
+	        	JFrame jFrame = new JFrame("Password Validator");
+	    		jFrame.setSize(500,400);
+	    		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);                  
+	    		jFrame.setVisible(true);
+	        }
+	    });  
+		
+	}
+}

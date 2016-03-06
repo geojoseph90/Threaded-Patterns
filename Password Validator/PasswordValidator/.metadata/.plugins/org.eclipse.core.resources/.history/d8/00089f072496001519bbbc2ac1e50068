@@ -1,0 +1,99 @@
+package com.validator.view;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+import com.validator.controller.MainController;
+
+public class View extends JFrame{
+	
+	public View(String title) {
+		
+		//
+		super(title);
+		
+		// creating layout manager
+		setLayout(new BorderLayout());
+		
+		// create swing component
+		JTextArea textArea = new JTextArea();
+		JLabel label = new JLabel("Password: ");
+		JLabel resultLabel = new JLabel("Valid");
+		
+		JPanel panel = new JPanel();
+		JTextField inputField = new JTextField();
+		JButton button = new JButton("Validate");
+		String[] options = {"Offensive word", "Easy guess", "Salt password"};
+		panel.setLayout(new GridBagLayout());
+		getContentPane().add(panel);
+		
+		JLabel option1 = new JLabel("1: ");
+        JLabel option2 = new JLabel("2: ");
+        JLabel option3 = new JLabel("3: ");
+		JComboBox optionsList1 = new JComboBox(options);
+		optionsList1.setSelectedItem("Offensive word");
+		JComboBox optionsList2 = new JComboBox(options);
+		optionsList1.setSelectedItem("Easy guess");
+		JComboBox optionsList3 = new JComboBox(options);
+		optionsList1.setSelectedItem("Salt password");
+		
+		
+		GridBagConstraints left = new GridBagConstraints();
+        left.anchor = GridBagConstraints.EAST;
+        
+        GridBagConstraints center = new GridBagConstraints();
+        center.weightx = 2.0;
+        center.fill = GridBagConstraints.HORIZONTAL;
+        center.gridwidth = GridBagConstraints.REMAINDER;
+        
+        GridBagConstraints right = new GridBagConstraints();
+        right.weightx = 2.0;
+        right.fill = GridBagConstraints.HORIZONTAL;
+        right.gridwidth = GridBagConstraints.REMAINDER;
+        panel.add(label, left);
+        panel.add(inputField, right);
+        panel.add(resultLabel, right);
+        panel.add(option1, left);
+        panel.add(optionsList1, right);
+        panel.add(option2, left);
+        panel.add(optionsList2, right);
+        panel.add(option3, left);
+        panel.add(optionsList3, right);
+        
+        
+		// Add swing components to the content pane
+		Container container = getContentPane();
+		container.add(button,BorderLayout.SOUTH);
+		container.add(panel,BorderLayout.CENTER);
+	
+		button.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainController controller = new MainController();
+				String[] filterOrder = null;
+				filterOrder[1] = optionsList1.getSelectedItem().toString();
+				filterOrder[2] = optionsList2.getSelectedItem().toString();
+				filterOrder[3] = optionsList3.getSelectedItem().toString();
+				String password = inputField.getText();
+				controller.validatePassword(password,filterOrder);
+				
+			}
+		});
+		
+	}
+
+}
+
